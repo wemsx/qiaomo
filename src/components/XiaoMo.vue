@@ -11,7 +11,7 @@ import { ref } from 'vue'
 
 const qiaomoRef = ref()
 const qiao = ref(false)
-const qiaoWord = 'wulei~'
+const qiaoWord = 'wulei~ +1'
 
 let createQiaoWord = () => {
     const qiaoWordEl = document.createElement('p');
@@ -19,8 +19,11 @@ let createQiaoWord = () => {
     qiaoWordEl.className = 'qiaoWord';
     qiaomoRef.value.appendChild(qiaoWordEl)
     setTimeout(() => {
-        qiaoWordEl.remove()
-    }, 800)
+        qiaoWordEl.className = 'qiaoWordDis';
+        setTimeout(() => {
+            qiaoWordEl.remove()
+        }, 400)
+    }, 600)
 }
 
 function qiaoOnce() {
@@ -28,7 +31,7 @@ function qiaoOnce() {
     qiao.value = true
     setTimeout(() => {
         qiao.value = false
-    }, 500)
+    }, 400)
 }
 
 </script>
@@ -40,33 +43,29 @@ img {
 }
 
 .qiaoClass {
-    animation: qiao 0.48s linear;
+    animation: qiao 0.36s linear;
 }
 
 @media not (min-width: 1000px) {
-    .qiaoWord {
-        position: absolute;
-    }
-
     .qiaomoWord {
         color: #F7F7F7;
         position: absolute;
+        right: 0;
+        top: 0;
         font-size: 1.5vw;
-        line-height: 1vh;
+        line-height: 0;
     }
 }
 
 /* 电脑端 */
 @media (min-width: 1000px) {
-    .qiaoWord {
-        position: absolute;
-    }
-
     .qiaomoWord {
         color: #F7F7F7;
         position: absolute;
-        font-size: 1.5vw;
-        line-height: 2vh;
+        right: 0;
+        top: 0;
+        font-size: 2vw;
+        line-height: 0;
     }
 }
 
@@ -76,11 +75,31 @@ img {
     }
 
     50% {
-        transform: scale(1.1);
+        transform: scale(0.95);
     }
 
     100% {
         transform: scale(1);
+    }
+}
+</style>
+<style>
+.qiaoWordDis {
+    position: absolute;
+    top: 0;
+    animation: wordMove 0.5s linear;
+    opacity: 0;
+}
+
+@keyframes wordMove {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+
+    to {
+        top: -20%;
+        opacity: 0;
     }
 }
 </style>
