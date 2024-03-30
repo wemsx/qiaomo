@@ -16,12 +16,11 @@ const qiaoWord = 'wulei~ +1'
 let createQiaoWord = () => {
     const qiaoWordEl = document.createElement('p');
     qiaoWordEl.innerHTML = qiaoWord;
-    qiaoWordEl.className = 'qiaoWord';
     qiaomoRef.value.appendChild(qiaoWordEl)
     setTimeout(() => {
         qiaoWordEl.className = 'qiaoWordDis';
         setTimeout(() => {
-            qiaoWordEl.remove()
+            //qiaoWordEl.remove()
         }, 400)
     }, 600)
 }
@@ -37,34 +36,41 @@ function qiaoOnce() {
 </script>
 
 <style scoped>
-img {
-    height: 50vh;
-    width: auto;
-}
-
 .qiaoClass {
     animation: qiao 0.36s linear;
 }
 
 @media not (min-width: 1000px) {
+    img {
+        height: 40vh;
+        width: auto;
+    }
+
     .qiaomoWord {
         color: #F7F7F7;
         position: absolute;
-        right: 0;
+        right: -10vw;
         top: 0;
-        font-size: 1.5vw;
+        font-size: 3vh;
+        white-space: nowrap;
         line-height: 0;
     }
 }
 
 /* 电脑端 */
 @media (min-width: 1000px) {
+    img {
+        height: 50vh;
+        width: auto;
+    }
+
     .qiaomoWord {
         color: #F7F7F7;
         position: absolute;
-        right: 0;
+        right: -10vw;
         top: 0;
         font-size: 2vw;
+        white-space: nowrap;
         line-height: 0;
     }
 }
@@ -87,18 +93,22 @@ img {
 .qiaoWordDis {
     position: absolute;
     top: 0;
-    animation: wordMove 0.5s linear;
+    right: 0;
+    width: auto;
+    animation: wordMove 0.5s;
     opacity: 0;
 }
 
 @keyframes wordMove {
-    from {
+    0% {
         top: 0;
+        right: 0;
         opacity: 1;
     }
 
-    to {
+    100% {
         top: -20%;
+        right: 0;
         opacity: 0;
     }
 }
