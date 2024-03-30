@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import Xiaomo from '@/components/XiaoMo.vue'
+import QiaoCount from '@/components/QiaoCount.vue'
 </script>
 
 <template>
   <div class="background"></div>
+  <div class="header">
+    <QiaoCount></QiaoCount>
+  </div>
   <div class="main">
     <Xiaomo></Xiaomo>
   </div>
@@ -25,6 +29,17 @@ import Xiaomo from '@/components/XiaoMo.vue'
   left: 50%;
   top: 55%;
   transform: translate(-50%, -50%);
+}
+
+.header {
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 

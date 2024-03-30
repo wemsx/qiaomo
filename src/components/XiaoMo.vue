@@ -8,14 +8,18 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia';
+import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
+
+const qiaoBasicStore = useQiaoBasicStore();
+const { QiaoWord, QiaoCounter } = storeToRefs(qiaoBasicStore)
 
 const qiaomoRef = ref()
 const qiao = ref(false)
-const qiaoWord = 'wulei~ +1'
 
 let createQiaoWord = () => {
     const qiaoWordEl = document.createElement('div');
-    qiaoWordEl.innerHTML = qiaoWord;
+    qiaoWordEl.innerHTML = QiaoWord.value;
     qiaomoRef.value.appendChild(qiaoWordEl)
     setTimeout(() => {
         qiaoWordEl.className = 'qiaoWordDis';
@@ -28,6 +32,7 @@ let createQiaoWord = () => {
 function qiaoOnce() {
     createQiaoWord()
     qiao.value = true
+    QiaoCounter.value++;
     setTimeout(() => {
         qiao.value = false
     }, 400)
