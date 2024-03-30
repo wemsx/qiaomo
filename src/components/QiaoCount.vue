@@ -12,43 +12,38 @@ const qiaoBasicStore = useQiaoBasicStore();
 const { QiaoCounter } = storeToRefs(qiaoBasicStore)
 </script>
 <style scoped>
+.qiaoCounter {
+    user-select: none;
+    width: fit-content;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
 @media not (min-width: 1000px) {
     .qiaoCounter {
-        /** 还没有调好 */
-        height: 5vh;
-        width: fit-content;
-        padding: 1vh 1vw;
-        text-align: center;
-        vertical-align: middle;
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
+        height: 3vh;
         background-color: #282828;
         color: #f1f1f1;
-        padding: 1vh 3vw;
+        padding: 2vh 6vw;
         border-radius: 1vh;
     }
 
     .displayCount {
         width: fit-content;
         margin: auto;
-        font-size: 2vw;
+        font-size: 5vw;
     }
 }
 
 @media (min-width: 1000px) {
     .qiaoCounter {
         height: 7vh;
-        width: fit-content;
-        padding: 1vh 1vw;
-        text-align: center;
-        vertical-align: middle;
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
+        padding: 2vh 4vw;
         background-color: #282828;
         color: #f1f1f1;
-        padding: 1vh 3vw;
         border-radius: 1vh;
     }
 

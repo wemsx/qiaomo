@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import Xiaomo from '@/components/XiaoMo.vue'
-import QiaoCount from '@/components/QiaoCount.vue'
 </script>
 
 <template>
   <div class="background"></div>
-  <div class="header">
-    <QiaoCount></QiaoCount>
-  </div>
-  <div class="main">
-    <Xiaomo></Xiaomo>
-  </div>
+
+  <router-view></router-view>
+
 </template>
 
 <style scoped>
@@ -23,12 +18,23 @@ import QiaoCount from '@/components/QiaoCount.vue'
   background-color: #171717;
   z-index: -1;
 }
+</style>
 
-.main {
-  position: absolute;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
+<style>
+* {
+  font-family: "LXGW WenKai Screen";
+  touch-action: none;
+  -ms-touch-action: none;
+}
+
+#app {
+  overflow: hidden;
+  user-select: text;
+}
+
+body {
+  overflow: hidden;
+  user-select: text;
 }
 
 .header {
@@ -40,17 +46,5 @@ import QiaoCount from '@/components/QiaoCount.vue'
   display: flex;
   align-items: center;
   justify-content: center;
-}
-</style>
-
-<style>
-#app {
-  overflow: hidden;
-  user-select: text;
-}
-
-body {
-  overflow: hidden;
-  user-select: text;
 }
 </style>
