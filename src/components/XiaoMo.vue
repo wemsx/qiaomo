@@ -14,15 +14,15 @@ const qiao = ref(false)
 const qiaoWord = 'wulei~ +1'
 
 let createQiaoWord = () => {
-    const qiaoWordEl = document.createElement('p');
+    const qiaoWordEl = document.createElement('div');
     qiaoWordEl.innerHTML = qiaoWord;
     qiaomoRef.value.appendChild(qiaoWordEl)
     setTimeout(() => {
         qiaoWordEl.className = 'qiaoWordDis';
         setTimeout(() => {
-            //qiaoWordEl.remove()
-        }, 400)
-    }, 600)
+            qiaoWordEl.remove()
+        }, 300)
+    }, 500)
 }
 
 function qiaoOnce() {
@@ -94,21 +94,18 @@ function qiaoOnce() {
     position: absolute;
     top: 0;
     right: 0;
-    width: auto;
-    animation: wordMove 0.5s;
+    animation: wordMove 0.3s linear;
     opacity: 0;
 }
 
 @keyframes wordMove {
     0% {
         top: 0;
-        right: 0;
         opacity: 1;
     }
 
     100% {
-        top: -20%;
-        right: 0;
+        margin-top: -5vh;
         opacity: 0;
     }
 }
