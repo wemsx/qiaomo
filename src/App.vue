@@ -6,6 +6,9 @@
 
   <router-view></router-view>
 
+  <div class="footer">
+    program © 2024 wemsx && picture © since 2023 大哥
+  </div>
 </template>
 
 <style scoped>
@@ -17,6 +20,16 @@
   height: 100vh;
   background-color: #171717;
   z-index: -1;
+}
+
+.footer {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: dimgray;
+  font-size: 1rem;
 }
 </style>
 
