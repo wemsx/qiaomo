@@ -1,6 +1,6 @@
 <template>
     <div class="qiaomo">
-        <img src="https://gcore.jsdelivr.net/gh/wemhy/xm@1.0.0/logo/logot.svg" @click="qiaoOnce"
+        <img :src="'https://gcore.jsdelivr.net/gh/wemsx/qiaomo@master/icons/skin' + QiaoSkin + '.svg'" @click="qiaoOnce"
             :class="{ qiaoClass: qiao }" />
     </div>
     <div class="qiaomoWord" ref="qiaomoRef">
@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
 
 const qiaoBasicStore = useQiaoBasicStore();
-const { QiaoWord, QiaoCounter } = storeToRefs(qiaoBasicStore)
+const { QiaoWord, QiaoCounter, QiaoSkin } = storeToRefs(qiaoBasicStore)
 
 const qiaomoRef = ref()
 const qiao = ref(false)
