@@ -6,7 +6,8 @@ export const useQiaoBasicStore = defineStore(
   () => {
     const QiaoWord = ref('wolei~ +1')
     const QiaoCounter = ref(0)
-    return { QiaoWord, QiaoCounter }
+    const QiaoSkin = ref('0')
+    return { QiaoWord, QiaoCounter, QiaoSkin }
   },
   {
     persist: true
