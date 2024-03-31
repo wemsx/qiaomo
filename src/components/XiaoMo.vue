@@ -1,7 +1,7 @@
 <template>
     <div class="qiaomo">
-        <img :src="'https://gcore.jsdelivr.net/gh/wemsx/qiaomo@master/icons/skin' + QiaoSkin + '.svg'" @click="qiaoOnce"
-            :class="{ qiaoClass: qiao }" />
+        <img :src="'https://gcore.jsdelivr.net/gh/wemsx/qiaomo@master/dist/icons/skin' + QiaoSkin + '.svg'"
+            @click="qiaoOnce" :class="{ qiaoClass: qiao }" />
     </div>
     <div class="qiaomoWord" ref="qiaomoRef">
     </div>
