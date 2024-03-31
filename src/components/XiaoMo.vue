@@ -1,7 +1,7 @@
 <template>
     <div class="qiaomo">
         <img :src="'https://gcore.jsdelivr.net/gh/wemsx/qiaomo@master/dist/icons/skin' + QiaoSkin + '.svg'"
-            @click="qiaoOnce" :class="{ qiaoClass: qiao }" />
+            @click="qiaoOnce" :class="{ qiaoClass: qiao, adjusted: (QiaoSkin !== 0) }" />
     </div>
     <div class="qiaomoWord" ref="qiaomoRef">
     </div>
@@ -45,16 +45,16 @@ function qiaoOnce() {
     animation: qiao 0.36s linear;
 }
 
-@media not (min-width: 1000px) {
+@media not (min-width: 1080px) {
     img {
-        height: 40vh;
-        width: auto;
+        width: 80vw;
+        height: auto;
     }
 
     .qiaomoWord {
         color: #F7F7F7;
         position: absolute;
-        right: -10vw;
+        right: 0vw;
         top: 0;
         font-size: 3vh;
         white-space: nowrap;
@@ -63,7 +63,7 @@ function qiaoOnce() {
 }
 
 /* 电脑端 */
-@media (min-width: 1000px) {
+@media (min-width: 1080px) {
     img {
         height: 50vh;
         width: auto;
@@ -110,7 +110,7 @@ function qiaoOnce() {
     }
 
     100% {
-        margin-top: -5vh;
+        margin-top: -4vh;
         opacity: 0;
     }
 }

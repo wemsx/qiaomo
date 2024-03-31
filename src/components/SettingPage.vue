@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
 
 const qiaoBasicStore = useQiaoBasicStore();
-const { QiaoSkin } = storeToRefs(qiaoBasicStore)
+const { QiaoSkin, QiaoCounter } = storeToRefs(qiaoBasicStore)
 
 const skinChoices = [
     '小末花',
@@ -13,6 +13,13 @@ const skinChoices = [
     '原末 II',
     '小_狐',
     '小_狐'
+]
+const limit = [
+    0,
+    100,
+    200,
+    500,
+    1000
 ]
 </script>
 <template>
@@ -25,25 +32,26 @@ const skinChoices = [
         <div class="skinSelection">
             <div class="radio-inputs">
                 <label v-for="(item, index) of skinChoices" :key="index">
-                    <input class="radio-input" type="radio" name="engine" :value="index" v-model="QiaoSkin" />
-                    <span class="radio-tile">
+                    <input class="radio-input" type="radio" name="engine" :value="index" v-model="QiaoSkin"
+                        :disabled="QiaoCounter < limit[index]" />
+                    <span class="radio-tile" v-if="QiaoCounter < limit[index]">
                         <span class="radio-icon">
                             <LockIcon></LockIcon>
+                        </span>
+                        <span class="radio-label">{{ '达到' + limit[index] + '解锁' }}</span>
+                    </span>
+                    <span class="radio-tile" v-else>
+                        <span class="radio-icon">
+                            👌
                         </span>
                         <span class="radio-label">{{ item }}</span>
                     </span>
                 </label>
             </div>
         </div>
-        <!--<h1>前面的区域，以后再来探索吧。</h1>-->
     </div>
 </template>
 <style scoped>
-h1 {
-    color: white;
-    scale: 1.2;
-}
-
 .main {
     position: absolute;
     left: 50%;
@@ -55,7 +63,19 @@ h1 {
     position: absolute;
     left: 50%;
     top: -40%;
-    transform: translate(-50%, -50%);
+}
+
+@media (min-width: 1080px) {
+    .skinSelection {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media not (min-width: 1080px) {
+    .skinSelection {
+        transform: translate(-67.5%, -67.5%);
+        scale: 0.75;
+    }
 }
 
 .radio-inputs {
@@ -77,6 +97,12 @@ h1 {
     border-color: #2260ff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #2260ff;
+}
+
+.radio-input:disabled+.radio-tile {
+    border-color: red;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: red;
 }
 
 .radio-input:checked+.radio-tile:before {

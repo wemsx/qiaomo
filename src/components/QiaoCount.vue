@@ -4,7 +4,6 @@
     </div>
 </template>
 <script setup>
-//import { ref } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
 
@@ -22,23 +21,21 @@ const { QiaoCounter } = storeToRefs(qiaoBasicStore)
     cursor: pointer;
 }
 
-@media not (min-width: 1000px) {
+@media not (min-width: 1080px) {
     .qiaoCounter {
         height: 3vh;
-        background-color: #282828;
         color: #f1f1f1;
-        padding: 2vh 6vw;
-        border-radius: 1vh;
+        padding: 2vh 5vw;
     }
 
     .displayCount {
         width: fit-content;
         margin: auto;
-        font-size: 5vw;
+        font-size: 5vh;
     }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1080px) {
     .qiaoCounter {
         height: 7vh;
         padding: 2vh 4vw;
