@@ -10,9 +10,17 @@
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
+import { useQiaoAchieveStore } from '@/stores/qiaoMoAchieve';
 
 const qiaoBasicStore = useQiaoBasicStore();
 const { QiaoWord, QiaoCounter, QiaoSkin } = storeToRefs(qiaoBasicStore)
+const qiaoAchieveStore = useQiaoAchieveStore();
+const { QiaoQps } = storeToRefs(qiaoAchieveStore)
+
+const qiaomoRef = ref()
+const qiao = ref(false)
+const startTime = ref(0);
+
 const actualSize = computed(() => {
     let w = window.innerWidth;
     let h = window.innerHeight;
@@ -33,8 +41,6 @@ const actualFontSize = computed(() => {
     return { fontSize: fs }
 })
 
-const qiaomoRef = ref()
-const qiao = ref(false)
 
 let createQiaoWord = () => {
     const qiaoWordEl = document.createElement('div');
@@ -52,6 +58,14 @@ function qiaoOnce() {
     createQiaoWord()
     qiao.value = true
     QiaoCounter.value++;
+
+    if (startTime.value === 0) {
+        startTime.value = Date.now();
+    } else {
+        QiaoQps.value = Date.now() - startTime.value;
+        startTime.value = 0;
+    }
+
     setTimeout(() => {
         qiao.value = false
     }, 400)

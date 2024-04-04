@@ -1,15 +1,20 @@
 <template>
     <div class="qiaoCounter">
-        <span class="displayCount" :style="actualFontSize">{{ QiaoCounter }}</span>
+        <span class="displayCount" :style="actualFontSize">{{ QiaoCounter }}</span><br />
+        <span>{{ QiaoQps == 0 ? 'wuqiongda' : (1000 / QiaoQps).toFixed(3) + ' 次/秒' }}</span>
     </div>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
+import { useQiaoAchieveStore } from '@/stores/qiaoMoAchieve';
 
 const qiaoBasicStore = useQiaoBasicStore();
 const { QiaoCounter } = storeToRefs(qiaoBasicStore)
+const qiaoAchieveStore = useQiaoAchieveStore();
+const { QiaoQps } = storeToRefs(qiaoAchieveStore)
+
 const actualFontSize = computed(() => {
     let w = window.innerWidth;
     let h = window.innerHeight;
