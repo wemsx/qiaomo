@@ -11,8 +11,8 @@ const skinChoices = [
     '小末花',
     '原末 I',
     '原末 II',
-    '小_狐',
-    '小_狐'
+    '小吉狐',
+    '小顺狐'
 ]
 const limit = [
     0,
