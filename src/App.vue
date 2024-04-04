@@ -7,7 +7,7 @@
   <router-view></router-view>
 
   <div class="footer">
-    program © 2024 wemsx && picture © since 2023 大哥
+    idea & image © since 2023 大哥 && program © 2024 wemsx || <router-link :to="'/help'">教程</router-link>
   </div>
 </template>
 

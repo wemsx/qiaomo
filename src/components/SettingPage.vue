@@ -3,9 +3,18 @@ import QiaoCount from './QiaoCount.vue';
 import LockIcon from './icons/LockIcon.vue';
 import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
+import { useRoute } from 'vue-router';
+import { ref } from 'vue'
 
 const qiaoBasicStore = useQiaoBasicStore();
-const { QiaoSkin, QiaoCounter } = storeToRefs(qiaoBasicStore)
+const { QiaoSkin, QiaoCounter, QiaoWord } = storeToRefs(qiaoBasicStore)
+const toDelete = ref([])
+const route = useRoute()
+
+const deleteCache = () => {
+    window.localStorage.clear()
+    location.href = "/";
+}
 
 const skinChoices = [
     '小末花',
@@ -49,6 +58,12 @@ const limit = [
                 </label>
             </div>
         </div>
+        <div class="intqiaoWord">
+            你想敲出什么：<input type="text" class="inputQiao" placeholder="默认可以敲出 wolei " v-model="QiaoWord">
+        </div>
+    </div>
+    <div class="clearCache" v-if="route.query.dev">
+        <button @click="deleteCache"> 清空缓存 </button>
     </div>
 </template>
 <style scoped>
@@ -193,5 +208,59 @@ const limit = [
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.intqiaoWord {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    white-space: nowrap;
+    color: azure;
+    margin-top: 7vh;
+}
+
+.inputQiao {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 12em;
+    transition: all ease-in-out .5s;
+    margin-right: -2rem;
+}
+
+.inputQiao:hover,
+.inputQiao:focus {
+    box-shadow: 0 0 1em #00000013;
+}
+
+.inputQiao:focus {
+    outline: none;
+    background-color: #f0eeee;
+}
+
+.inputQiao::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ccc;
+}
+
+.inputQiao:focus+.search__button {
+    background-color: #f0eeee;
+}
+
+.clearCache {
+    position: absolute;
+    left: 50%;
+    bottom: 20vh;
+    transform: translate(-50%, -50%);
+}
+
+.clearCache button {
+    height: 10vh;
+    width: 10vw;
 }
 </style>

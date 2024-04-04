@@ -44,7 +44,7 @@ const actualFontSize = computed(() => {
 
 let createQiaoWord = () => {
     const qiaoWordEl = document.createElement('div');
-    qiaoWordEl.innerHTML = QiaoWord.value;
+    qiaoWordEl.innerHTML = QiaoWord.value + '+1';
     qiaomoRef.value.appendChild(qiaoWordEl)
     setTimeout(() => {
         qiaoWordEl.className = 'qiaoWordDis';
