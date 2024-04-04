@@ -1,14 +1,21 @@
 <template>
     <div class="qiaoCounter">
-        <span class="displayCount">{{ QiaoCounter }}</span>
+        <span class="displayCount" :style="actualFontSize">{{ QiaoCounter }}</span>
     </div>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
 
 const qiaoBasicStore = useQiaoBasicStore();
 const { QiaoCounter } = storeToRefs(qiaoBasicStore)
+const actualFontSize = computed(() => {
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let fs = h > w ? h * 0.07 + 'px' : w * 0.05 + 'px';
+    return { fontSize: fs }
+})
 </script>
 <style scoped>
 .qiaoCounter {
@@ -19,35 +26,11 @@ const { QiaoCounter } = storeToRefs(qiaoBasicStore)
     position: relative;
     display: inline-block;
     cursor: pointer;
+    color: #f1f1f1;
 }
 
-@media not (min-width: 1080px) {
-    .qiaoCounter {
-        height: 3vh;
-        color: #f1f1f1;
-        padding: 2vh 5vw;
-    }
-
-    .displayCount {
-        width: fit-content;
-        margin: auto;
-        font-size: 5vh;
-    }
-}
-
-@media (min-width: 1080px) {
-    .qiaoCounter {
-        height: 7vh;
-        padding: 2vh 4vw;
-        background-color: #282828;
-        color: #f1f1f1;
-        border-radius: 1vh;
-    }
-
-    .displayCount {
-        font-size: 3vw;
-        width: fit-content;
-        margin: auto;
-    }
+.displayCount {
+    width: fit-content;
+    margin: auto;
 }
 </style>

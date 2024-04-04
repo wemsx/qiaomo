@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="background"></div>
+  <div class="background" style="background-color: #171717"></div>
 
   <router-view></router-view>
 
@@ -18,7 +18,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #171717;
   z-index: -1;
 }
 

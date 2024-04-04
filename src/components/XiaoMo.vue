@@ -1,18 +1,37 @@
 <template>
-    <div class="qiaomo">
+    <div class="qiaomo" style="color:chartreuse">
         <img :src="'https://gcore.jsdelivr.net/gh/wemsx/qiaomo@master/dist/icons/skin' + QiaoSkin + '.svg'"
-            @click="qiaoOnce" :class="{ qiaoClass: qiao, adjusted: (QiaoSkin !== 0) }" />
+            @click="qiaoOnce" :class="{ qiaoClass: qiao, adjusted: (QiaoSkin !== 0) }" :style="actualSize" />
     </div>
-    <div class="qiaomoWord" ref="qiaomoRef">
+    <div class="qiaomoWord" ref="qiaomoRef" :style="actualFontSize">
     </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useQiaoBasicStore } from '@/stores/qiaoMoBasic';
 
 const qiaoBasicStore = useQiaoBasicStore();
 const { QiaoWord, QiaoCounter, QiaoSkin } = storeToRefs(qiaoBasicStore)
+const actualSize = computed(() => {
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+
+    let ah = h > w ?
+        w * 0.7 + 'px'
+        : 'auto';
+    let aw = h < w ? h * 0.5 + 'px' : 'auto';
+    return {
+        width: aw,
+        height: ah
+    }
+})
+const actualFontSize = computed(() => {
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let fs = h > w ? h * 0.04 + 'px' : w * 0.03 + 'px';
+    return { fontSize: fs }
+})
 
 const qiaomoRef = ref()
 const qiao = ref(false)
@@ -45,39 +64,13 @@ function qiaoOnce() {
     animation: qiao 0.36s linear;
 }
 
-@media not (min-width: 1080px) {
-    img {
-        width: 80vw;
-        height: auto;
-    }
-
-    .qiaomoWord {
-        color: #F7F7F7;
-        position: absolute;
-        right: 0vw;
-        top: 0;
-        font-size: 3vh;
-        white-space: nowrap;
-        line-height: 0;
-    }
-}
-
-/* 电脑端 */
-@media (min-width: 1080px) {
-    img {
-        height: 50vh;
-        width: auto;
-    }
-
-    .qiaomoWord {
-        color: #F7F7F7;
-        position: absolute;
-        right: -10vw;
-        top: 0;
-        font-size: 2vw;
-        white-space: nowrap;
-        line-height: 0;
-    }
+.qiaomoWord {
+    color: #F7F7F7;
+    position: absolute;
+    right: -10vw;
+    top: 0;
+    white-space: nowrap;
+    line-height: 0;
 }
 
 @keyframes qiao {
