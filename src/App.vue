@@ -1,4 +1,11 @@
 <script setup lang="ts">
+window.addEventListener('message', msg => {
+  if (window.top) {
+    const data = localStorage.getItem('qiaoBasic')
+    //console.log(data)
+    window.top.postMessage(data, '*');
+  }
+}, false);
 </script>
 
 <template>
